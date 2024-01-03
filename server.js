@@ -30,7 +30,7 @@ app.post("/send-email", async (req, res) => {
   // Define email options
   const mailOptions = {
     from: `${name}`,
-    to: "ayush@melangedigital.in",
+    to: "hello@melangedigital.in",
     subject: "New Form Submission",
     text: `
       Name: ${name}
