@@ -9,14 +9,9 @@ app.use(bodyParser.json());
 
 // CORS middleware to allow requests from your React app (update with your frontend URL)
 app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://melange-local.vercel.app/"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+  res.header("Access-Control-Allow-Origin", "https://melange-local.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
 
@@ -35,7 +30,7 @@ app.post("/send-email", async (req, res) => {
   // Define email options
   const mailOptions = {
     from: `${name}`,
-    to: "hello@melangedigital.in",
+    to: "ayush@melangedigital.in",
     subject: "New Form Submission",
     text: `
       Name: ${name}
@@ -48,7 +43,6 @@ app.post("/send-email", async (req, res) => {
   };
 
   try {
-    // Send email
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent:", info.messageId);
     res.status(200).json({ success: true });
